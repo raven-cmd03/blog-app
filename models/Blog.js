@@ -27,6 +27,12 @@ const BlogEntrySchema = new mongoose.Schema({
     default: Date.now,
   },
   comment: [CommentSchema],
+  tag: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Tag",
+    },
+  ],
 });
 
 const BlogSchema = new mongoose.Schema({
@@ -36,19 +42,13 @@ const BlogSchema = new mongoose.Schema({
   },
   URL: {
     type: String,
-    require: true,
+    required: true,
   },
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
   blogEntry: [BlogEntrySchema],
-  tag: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Tag",
-    },
-  ],
 });
 
 const Blog = mongoose.model("Blog", BlogSchema);
