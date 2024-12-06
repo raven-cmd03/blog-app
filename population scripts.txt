@@ -1,0 +1,112 @@
+db.UserCollection.insertMany([
+  { name: "Alice Smith", email: "alice@example.com", author: { details: "Author of tech blogs" } },
+  { name: "Bob Johnson", email: "bob@example.com", author: { details: "Lifestyle blogger" } },
+  { name: "Charlie Brown", email: "charlie@example.com", author: { details: "Travel enthusiast" } }
+]);
+
+
+db.TagCollection.insertMany([
+  { value: "Technology" },
+  { value: "Lifestyle" },
+  { value: "Travel" },
+  { value: "Food" },
+  { value: "Science" }
+]);
+
+
+db.BlogCollection.insertMany([
+  {
+    name: "Tech Insights",
+    URL: "https://techinsights.example.com",
+    author: ObjectId("replace_with_user_id_1"), // Replace with a User _id from UserCollection
+    blogEntry: [
+      {
+        article: "The Future of AI",
+        publishDate: new Date(),
+        comment: [
+          {
+            comment: "Great article!",
+            commentDate: new Date(),
+            commentBy: ObjectId("replace_with_user_id_2"), // Replace with another User _id
+          },
+          {
+            comment: "Very informative!",
+            commentDate: new Date(),
+            commentBy: ObjectId("replace_with_user_id_3"), // Replace with another User _id
+          }
+        ],
+        tag: [
+          ObjectId("replace_with_tag_id_1"), // Replace with a Tag _id
+          ObjectId("replace_with_tag_id_2")  // Replace with another Tag _id
+        ]
+      },
+      {
+        article: "Cybersecurity Trends 2024",
+        publishDate: new Date(),
+        comment: [
+          {
+            comment: "Useful tips, thanks!",
+            commentDate: new Date(),
+            commentBy: ObjectId("replace_with_user_id_2"),
+          },
+          {
+            comment: "I learned a lot from this!",
+            commentDate: new Date(),
+            commentBy: ObjectId("replace_with_user_id_3"),
+          }
+        ],
+        tag: [
+          ObjectId("replace_with_tag_id_3"),
+          ObjectId("replace_with_tag_id_4")
+        ]
+      }
+    ]
+  },
+  {
+    name: "World Wanderers",
+    URL: "https://worldwanderers.example.com",
+    author: ObjectId("replace_with_user_id_2"),
+    blogEntry: [
+      {
+        article: "Top 10 Travel Destinations",
+        publishDate: new Date(),
+        comment: [
+          {
+            comment: "Love the recommendations!",
+            commentDate: new Date(),
+            commentBy: ObjectId("replace_with_user_id_1"),
+          },
+          {
+            comment: "Adding these to my bucket list.",
+            commentDate: new Date(),
+            commentBy: ObjectId("replace_with_user_id_3"),
+          }
+        ],
+        tag: [
+          ObjectId("replace_with_tag_id_3"),
+          ObjectId("replace_with_tag_id_5")
+        ]
+      },
+      {
+        article: "How to Travel on a Budget",
+        publishDate: new Date(),
+        comment: [
+          {
+            comment: "Thanks for the tips!",
+            commentDate: new Date(),
+            commentBy: ObjectId("replace_with_user_id_1"),
+          },
+          {
+            comment: "Super helpful for my next trip.",
+            commentDate: new Date(),
+            commentBy: ObjectId("replace_with_user_id_3"),
+          }
+        ],
+        tag: [
+          ObjectId("replace_with_tag_id_3"),
+          ObjectId("replace_with_tag_id_2")
+        ]
+      }
+    ]
+  }
+]);
