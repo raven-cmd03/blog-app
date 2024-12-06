@@ -33,11 +33,10 @@ app.post("/entry", async (req, res) => {
 
     const newBlogEntry = { article, tag: tagIds };
 
-    // Add comments to the blog entry if provided
     if (comments && comments.length > 0) {
       newBlogEntry.comment = comments.map((commentText) => ({
         comment: commentText,
-        commentBy: req.body.userId, // Assuming `userId` is passed with the request
+        commentBy: req.body.userId,
       }));
     }
 
@@ -194,16 +193,13 @@ app.delete("/user/:userId", async (req, res) => {
   try {
     const { userId } = req.params;
 
-    // Remove user's comments from blogs
     await Blog.updateMany(
       { "blogEntry.comment.commentBy": userId },
       { $pull: { "blogEntry.$[].comment": { commentBy: userId } } }
     );
 
-    // Remove all blogs created by the user
     await Blog.deleteMany({ author: userId });
 
-    // Remove the user
     await User.findByIdAndDelete(userId);
 
     res
